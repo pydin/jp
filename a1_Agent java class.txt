@@ -1,0 +1,93 @@
+package S;
+
+import java.io.*;
+import java.net.ConnectException;
+import java.net.Socket;
+public class Agent {
+   int port;
+   PrintWriter writer;
+   BufferedReader reader;
+   String name;
+   int attr_1;
+   
+   double attr_2;
+
+   // 
+  
+
+   public Agent() {
+}
+   
+   public void Agent_port(int Agent_port) throws Exception{
+		// 
+		port=Agent_port;
+do {		
+try {
+	//
+		   Socket socket = new Socket("127.0.0.1", port);
+		   OutputStream output = socket.getOutputStream();
+			  writer = new PrintWriter(output, true);
+			  
+			  InputStream input = socket.getInputStream();
+			  
+			  reader = new BufferedReader(new InputStreamReader(input));
+			  Iterate.count++;
+			  //
+		// 
+}
+catch(ConnectException e) {
+	//
+	Thread.sleep(500);
+}
+}
+while (writer == null);
+}
+	
+   
+   public void Agent_name(String Agent_name) {
+		// 
+		name=Agent_name;
+	}
+// 
+   public void Agent_attr_1(int Agent_attr_1) {
+      attr_1 = Agent_attr_1;
+   }
+
+   
+
+   /* Assign the salary to the variable	salary.*/
+   public void Agent_attr_2(double Agent_attr_2) {
+      attr_2 = Agent_attr_2;
+   }
+
+   /* Print the Employee details */
+   public void iteration()throws Exception{
+	   
+		 name = (String)name;
+		 attr_1= (int)attr_1 + 1;
+		 
+		 writer.println(String.format("%f:%d", attr_2,attr_1));
+		 String output = reader.readLine();
+		 attr_2=Double.parseDouble(output);
+		//
+		//
+		//
+               //
+		//
+		//
+               //
+		//
+		//
+		//
+               //
+		
+		System.out.println("Agent_Name:"+ name );
+	      System.out.println("attr_1:" + attr_1 );
+	      
+	      System.out.println("attr_2:" + attr_2);
+	      Iterate.count++;
+		//
+		//
+	}
+
+}

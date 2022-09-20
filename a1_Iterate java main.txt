@@ -1,0 +1,124 @@
+package S;
+import java.io.IOException;
+import S.Agent;
+
+
+
+public class Iterate {
+	
+
+	public static int count;
+	
+	Agent Ag_1;  // 
+	          // 
+	Agent Ag_2;
+	public void evolve(int steps)throws Exception{ 
+		count=0;// 
+		//
+		//
+		Thread m1=new Thread(()->{
+		ProcessBuilder builder = new ProcessBuilder("C:/Users/Hamed/anaconda3/python.exe",
+				"C:/Users/Hamed/Desktop/saved_model.py","3333");
+		try {
+			Process process =builder.start();
+		} catch (IOException e) {
+			// 
+			e.printStackTrace();
+		}
+		});
+		m1.start();
+		//
+		//
+		Ag_1 = new Agent(); 
+		
+		Ag_1.Agent_name("Adam");
+		Ag_1.Agent_attr_1(0);
+		Ag_1.Agent_attr_2(1000);
+		Thread A1=new Thread(()->{
+		try {
+			Ag_1.Agent_port(3333);
+		} catch (Exception e) {
+			// 
+			e.printStackTrace();
+		}
+		});
+		A1.start();
+		//
+		Thread m2=new Thread(()->{
+			ProcessBuilder builder = new ProcessBuilder("C:/Users/Hamed/anaconda3/python.exe",
+					"C:/Users/Hamed/Desktop/saved_model.py","3334");
+			try {
+				Process process =builder.start();
+			} catch (IOException e) {
+				// 
+				e.printStackTrace();
+			}
+			});
+		m2.start();
+		//
+		//
+		Ag_2 = new Agent(); 
+		Ag_2.Agent_name("Smith");
+		Ag_2.Agent_attr_1(10);
+		Ag_2.Agent_attr_2(2000);
+		Thread A2=new Thread(()->{
+			try {
+				Ag_2.Agent_port(3334);
+			} catch (Exception e) {
+				// 
+				e.printStackTrace();
+			}
+			});
+			A2.start();	
+			//
+                //
+			while (count !=2) {
+				Thread.sleep(1000);
+				//
+			}
+			//
+			for(int i=0;i<steps;i++){
+			
+			count=0;
+                     //
+		     // 
+		     //
+		Thread A_1=new Thread(()->{
+		try {
+			Ag_1.iteration();
+		} catch (Exception e) {
+			// 
+			e.printStackTrace();
+		}
+		});
+		A_1.start();	
+
+		Thread A_2=new Thread(()->{
+			try {
+				Ag_2.iteration();
+			} catch (Exception e) {
+				// 
+				e.printStackTrace();
+			}
+			});
+			A_2.start();	
+			
+		while (count !=2) {
+			Thread.sleep(100);
+			// 
+			//      
+		}
+		}
+	}
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) throws Exception{ 
+         //
+		//
+		Iterate Agents = new Iterate(); 
+                 //
+		Agents.evolve(10); 
+               //
+	}
+}

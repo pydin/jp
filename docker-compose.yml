@@ -1,0 +1,12 @@
+services:
+  api:
+    image: tensorflow/serving
+    volumes:
+      - type: bind
+        source: C:\Users\Hamed\Desktop\
+        target: /models/saved_model  
+    working_dir: /models/saved_model
+    environment:
+      - MODEL_NAME=saved_model
+    ports:
+      - 8501:8501
